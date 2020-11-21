@@ -292,6 +292,12 @@ namespace Ryujinx.HLE.HOS.Services.SurfaceFlinger
                 Item  = item,
             };
 
+            item.Fence.RegisterCallback(_device.Gpu, () => 
+            {
+                _device.Gpu.Window.SignalFrameReady();
+                _device.Gpu.GPFifo.Interrupt();
+            });
+
             _device.Gpu.Window.EnqueueFrameThreadSafe(
                 frameBufferAddress,
                 frameBufferWidth,
