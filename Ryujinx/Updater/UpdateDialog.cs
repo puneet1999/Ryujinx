@@ -36,8 +36,8 @@ namespace Ryujinx.Ui
 
             ProgressBar.Hide();
 
-            YesButton.Pressed += YesButton_Pressed;
-            NoButton.Pressed  += NoButton_Pressed;
+            YesButton.Clicked += YesButton_Pressed;
+            NoButton.Clicked  += NoButton_Pressed;
         }
         
         private void YesButton_Pressed(object sender, EventArgs args)
@@ -70,7 +70,7 @@ namespace Ryujinx.Ui
                 SecondaryText.Text = "";
                 _restartQuery      = true;
 
-                Updater.UpdateRyujinx(this, _buildUrl);
+                _ = Updater.UpdateRyujinx(this, _buildUrl);
             }
         }
 
